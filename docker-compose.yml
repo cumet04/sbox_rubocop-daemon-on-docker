@@ -22,6 +22,19 @@ services:
     depends_on:
       - db
 
+  rubocop_daemon:
+    build:
+      context: ./backend
+      args:
+        - ENV=dev
+    command: bundle exec rubocop-daemon start --no-daemon
+    volumes:
+      - "./backend/tmp/rubocop-daemon:/home/user/.cache/rubocop-daemon"
+      - /app/.bundle
+    user: "${UID}:${GID}"
+    logging:
+      driver: none
+
   db:
     image: mariadb:10.3
     environment:
