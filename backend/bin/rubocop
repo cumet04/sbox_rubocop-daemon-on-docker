@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker-compose exec rubocop_daemon bundle exec rubocop-daemon exec -- $@
+docker-compose exec -T rubocop_daemon bundle exec rubocop-daemon exec -- $@
