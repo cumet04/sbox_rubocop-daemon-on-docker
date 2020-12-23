@@ -1,0 +1,36 @@
+version: "3"
+services:
+  backend:
+    build:
+      context: ./backend
+      args:
+        - ENV=dev
+    volumes:
+      - "./backend:/app"
+      - /app/.bundle
+    environment:
+      - RAILS_ENV=development
+      - RAILS_DB_HOST=db
+      - RAILS_DB_PORT=3306
+      - RAILS_DB_DATABASE=railsapp
+      - RAILS_DB_USERNAME=root
+      - RAILS_DB_PASSWORD=""
+      - RAILS_SECRET_KEY_BASE=""
+    ports:
+      - "3000:3000"
+    user: "${UID}:${GID}"
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.3
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_HOST: "%"
+    volumes:
+      - db:/var/lib/mysql
+    logging:
+      driver: none
+
+volumes:
+  db:
