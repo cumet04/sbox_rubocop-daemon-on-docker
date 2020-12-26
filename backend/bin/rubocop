@@ -1,3 +1,18 @@
 #!/bin/bash
 
-docker-compose exec -T rubocop_daemon bundle exec rubocop-daemon exec -- $@
+set -e
+cd $(dirname $0)/..
+
+NETCAT="nc -N" # 環境に応じて調整
+DAEMON_DIR="tmp/rubocop-daemon/app"
+
+# ローカルの絶対パスを相対パスに変換する; コンテナ内のパスとの整合性を取る
+OPTIONS=$(echo "$@" | sed "s|$PWD|\.|g")
+COMMAND="$(cat $DAEMON_DIR/token) /app exec $OPTIONS"
+
+# 標準入力を読み取っておく; vscodeは'-s'オプション付きで実行するため
+STDIN_CONTENT="$(cat)"
+
+printf '%s\n%s\n' "$COMMAND" "$STDIN_CONTENT" | $NETCAT 127.0.0.1 $(cat $DAEMON_DIR/port)
+
+exit $(cat $DAEMON_DIR/status)

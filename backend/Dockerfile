@@ -1,7 +1,8 @@
 FROM ruby:2.7.2
 
-# ONLY for development container
-RUN mkdir -m 777 /home/user
+ARG UID
+ARG GID
+RUN mkdir /home/user && chown $UID:$GID /home/user
 ENV HOME /home/user
 
 WORKDIR /app

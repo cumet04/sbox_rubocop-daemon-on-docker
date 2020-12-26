@@ -1,9 +1,7 @@
 {
-  "folders": [
-    { "path": "." },
-    { "path": "./backend" },
-  ],
+  "folders": [{ "path": "." }, { "path": "./backend" }],
   "settings": {
-    "ruby.format": "rubocop"
+    "ruby.format": "rubocop",
+    "ruby.useBundler": false
   }
 }
