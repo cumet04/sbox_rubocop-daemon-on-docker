@@ -18,7 +18,6 @@ services:
       - RAILS_SECRET_KEY_BASE=""
     ports:
       - "3000:3000"
-    user: "${UID}:${GID}"
     depends_on:
       - db
 
@@ -27,15 +26,12 @@ services:
       context: ./backend
       args:
         - ENV=dev
-        - UID=${UID}
-        - GID=${GID}
     command: bundle exec rubocop-daemon start --no-daemon --binding 0.0.0.0 --port 3001
     volumes:
-      - "./backend/tmp/rubocop-daemon:/home/user/.cache/rubocop-daemon"
+      - "./backend/tmp/rubocop-daemon:/root/.cache/rubocop-daemon"
       - /app/.bundle
     ports:
       - "3001:3001"
-    user: "${UID}:${GID}"
     logging:
       driver: none
 
