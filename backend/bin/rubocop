@@ -4,7 +4,7 @@ set -e
 cd $(dirname $0)/..
 
 NETCAT="nc -N" # 環境に応じて調整
-DAEMON_DIR="tmp/rubocop-daemon/app"
+DAEMON_DIR="tmp/rubocop-daemon"
 
 # ローカルの絶対パスを相対パスに変換する; コンテナ内のパスとの整合性を取る
 OPTIONS=$(echo "$@" | sed "s|$PWD|\.|g")
