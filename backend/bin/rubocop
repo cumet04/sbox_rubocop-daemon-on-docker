@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -eu
 cd $(dirname $0)/..
 
 NETCAT="nc -N" # 環境に応じて調整
