@@ -8,6 +8,11 @@ gem 'mysql2', '~> 0.5'
 gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 
+group :development, :test do
+  gem 'rspec'
+  gem 'rspec-rails'
+end
+
 group :development do
   gem 'web-console', '>= 4.1.0'
   gem 'rack-mini-profiler', '~> 2.0'
