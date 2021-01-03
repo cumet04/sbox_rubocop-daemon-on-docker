@@ -35,6 +35,26 @@ services:
     logging:
       driver: none
 
+  rspec_daemon:
+    build:
+      context: ./backend
+      args:
+        - ENV=dev
+    command: bundle exec rails runner lib/rspec_daemon.rb
+    volumes:
+      - "./backend:/app"
+      - /app/.bundle
+    environment:
+      - RAILS_ENV=development
+      - RAILS_DB_HOST=db
+      - RAILS_DB_PORT=3306
+      - RAILS_DB_DATABASE=railsapp
+      - RAILS_DB_USERNAME=root
+      - RAILS_DB_PASSWORD=""
+      - RAILS_SECRET_KEY_BASE=""
+    ports:
+      - "3002:3002"
+
   db:
     image: mariadb:10.3
     environment:

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -eu
+cd $(dirname $0)/..
+
+NETCAT="nc -N" # 環境に応じて調整
+
+raw_output=$(echo "$@" | $NETCAT 127.0.0.1 3002)
+status=$(echo "$raw_output" | head -n 1)
+echo "$raw_output" | tail -n +2
+
+exit $status
