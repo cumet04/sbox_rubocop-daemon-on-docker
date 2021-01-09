@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/cumet04/rubocop-daemon
-  revision: ffc07e40060a179e6cde5732451ddfd9f44bf545
-  branch: binding_option
-  specs:
-    rubocop-daemon (0.3.2)
-      rubocop
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -193,7 +185,6 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.0)
   rubocop
-  rubocop-daemon!
   rubocop-rails
   spring
   web-console (>= 4.1.0)
