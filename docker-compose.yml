@@ -26,14 +26,12 @@ services:
       context: ./backend
       args:
         - ENV=dev
-    command: bundle exec rubocop-daemon start --no-daemon --binding 0.0.0.0 --port 3001
+    command: bundle exec ruby lib/rubocop_daemon.rb
     volumes:
-      - "./backend/tmp/rubocop-daemon:/root/.cache/rubocop-daemon/app"
+      - "./backend:/app"
       - /app/.bundle
     ports:
-      - "3001:3001"
-    logging:
-      driver: none
+      - "3001:3000"
 
   db:
     image: mariadb:10.3
@@ -42,8 +40,6 @@ services:
       MYSQL_ROOT_HOST: "%"
     volumes:
       - db:/var/lib/mysql
-    logging:
-      driver: none
 
 volumes:
   db:
