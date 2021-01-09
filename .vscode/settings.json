@@ -1,0 +1,10 @@
+{
+  "ruby.useLanguageServer": true,
+  "ruby.format": false,
+  "ruby.lint": {},
+  "ruby.useBundler": false,
+  "ruby.rubocop.executePath": "./backend/bin/",
+  "[ruby]": {
+    "editor.defaultFormatter": "misogi.ruby-rubocop"
+  },
+}
